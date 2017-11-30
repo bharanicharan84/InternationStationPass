@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">InternationStationPass</string>
+    <string name="welcome_text">Welcome to Internation Station Pass</string>
+    <string name="fetch_pass">Fetch Pass</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="enter_pass">Enter a Number to Fetch Pass</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="pass_list">List of Passes</string>
+
+    <string name="base_url">http://api.open-notify.org/iss-pass.json?</string>
+
+</resources>
