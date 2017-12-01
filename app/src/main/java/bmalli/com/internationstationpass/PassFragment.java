@@ -13,7 +13,6 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -77,7 +76,7 @@ public class PassFragment extends Fragment implements GoogleApiClient.Connection
             //                                          int[] grantResults)
             // to handle the case where the user grants the permission. See the documentation
             // for ActivityCompat#requestPermissions for more details.
-            Toast.makeText(getActivity(), "Please Provide Location Permission ", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getActivity(), getString(R.string.location_permission), Toast.LENGTH_SHORT).show();
             return;
         }
         mLocation = LocationServices.FusedLocationApi.getLastLocation(mGoogleApiClient);
@@ -85,7 +84,6 @@ public class PassFragment extends Fragment implements GoogleApiClient.Connection
             double latitude = mLocation.getLatitude();
             double longitude = mLocation.getLongitude();
             url = getString(R.string.base_url)+"lat="+latitude+"&lon="+longitude+"&n=10";
-            Log.e("URL ", " :: "+url);
         } else {
             Toast.makeText(getActivity(), "Location not Detected", Toast.LENGTH_SHORT).show();
         }
@@ -93,7 +91,6 @@ public class PassFragment extends Fragment implements GoogleApiClient.Connection
         if (null!= url){
             new FetchNewsTask().execute(url);
         }
-
     }
 
     @Override
@@ -115,37 +112,30 @@ public class PassFragment extends Fragment implements GoogleApiClient.Connection
     @Override
     public void onConnectionSuspended(int i) {
         mGoogleApiClient.connect();
-
     }
 
     @Override
-    public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
-
-    }
+    public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {}
 
     @Override
     public void onLocationChanged(Location location) {
-
     }
 
-
     class FetchNewsTask extends AsyncTask<String, Void, String> {
-
         @Override
         protected String doInBackground(String... url) {
-
             return HttpFactory.getInstance().sendGet(url[0]);
         }
 
         @Override
         protected void onPostExecute(String sResponse) {
-
             StationPassParser articleParser = new StationPassParser(sResponse);
             passesList = articleParser.build();
-            myAdapter = new PassAdapter(passesList);
-            recyclerView.setAdapter(myAdapter);
-            recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+            if (null != passesList) {
+                myAdapter = new PassAdapter(passesList);
+                recyclerView.setAdapter(myAdapter);
+                recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+            }
         }
     }
-
 }

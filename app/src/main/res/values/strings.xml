@@ -11,5 +11,7 @@
     <string name="pass_list">List of Passes</string>
 
     <string name="base_url">http://api.open-notify.org/iss-pass.json?</string>
+    <string name="time_format">MM/dd/yyyy HH:mm:ss</string>
+    <string name="location_permission">Please Provide Location Permission</string>
 
 </resources>

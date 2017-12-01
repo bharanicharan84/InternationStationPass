@@ -23,6 +23,8 @@ import bmalli.com.internationstationpass.R;
 
 public class PassAdapter extends RecyclerView.Adapter<PassAdapter.ViewHolder> {
 
+    private final long milliSeconds = 1000;
+
     private Context mContext;
     private List<StationPass> passList;
 
@@ -44,8 +46,8 @@ public class PassAdapter extends RecyclerView.Adapter<PassAdapter.ViewHolder> {
     public void onBindViewHolder(PassAdapter.ViewHolder holder, int position) {
         final StationPass pass = passList.get(position);
         holder.passDuration.setText(Long.toString(pass.getDuration()));
-        Date d = new Date(pass.getRiseTime() * 1000);
-        DateFormat df = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss");
+        Date d = new Date(pass.getRiseTime() * milliSeconds);
+        DateFormat df = new SimpleDateFormat(mContext.getString(R.string.time_format));
         holder.passTime.setText(df.format(d));
     }
 

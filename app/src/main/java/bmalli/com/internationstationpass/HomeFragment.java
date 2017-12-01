@@ -17,11 +17,9 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
 
     private Button btnFetchPass;
 
-
     public HomeFragment() {
         // Required empty public constructor
     }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -37,16 +35,13 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.btnFetchPass :
-
                 Fragment fragment = new PassFragment();
                 FragmentManager fragmentManager = getActivity().getFragmentManager();
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                 fragmentTransaction.replace(R.id.pass_container, fragment);
                 fragmentTransaction.addToBackStack(null);
                 fragmentTransaction.commit();
-
                 break;
         }
-
     }
 }

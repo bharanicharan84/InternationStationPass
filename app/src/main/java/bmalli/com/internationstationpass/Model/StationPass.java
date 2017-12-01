@@ -4,7 +4,7 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 /**
- * Created by bmalli on 11/29/17.
+ * Created by bmalli on 11/30/17.
  */
 
 public class StationPass implements Parcelable {
